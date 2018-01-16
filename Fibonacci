@@ -1,0 +1,30 @@
+# returns a generator which provides fibonacci value for numbers in a given range 
+def fib_range(first, last):
+    for curr in range(first,last+1):
+        yield fib(curr)
+
+# implements fibonacci series as generator
+def fib_generator():
+    yield 0
+    curr,last = 1,2
+    while(True):
+        yield curr
+        curr,last = last, last+curr
+    
+# recursive implementation of fibonacci series
+def fib(n):
+    if n==0:
+        return 0
+    elif n==1:
+        return 1
+    return n + fib(n-1)
+    
+ f_range = fib_range(3,9)
+ print(next(f_range))
+ print(next(f_range))
+ 
+ f_generator = fib_generator()
+ print(next(f_generator))
+ print(next(f_generator))
+ 
+ fib(3)

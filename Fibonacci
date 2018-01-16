@@ -5,11 +5,22 @@ def fib_range(first, last):
 
 # implements fibonacci series as generator
 def fib_generator():
-    yield 0
-    curr,last = 1,2
+    curr,last = 0,1
     while(True):
         yield curr
         curr,last = last, last+curr
+        
+# implements fibonacci series as class which implements iterator functionality
+class fib_generator:
+    def __init__(self):
+        self.curr = 0
+        self.last = 1
+    def __iter__(self):
+        return self
+    def __next__(self):
+        fib = self.curr
+        self.curr,self.last = self.last,self.curr+self.last
+        return fib
     
 # recursive implementation of fibonacci series
 def fib(n):
@@ -17,7 +28,7 @@ def fib(n):
         return 0
     elif n==1:
         return 1
-    return n + fib(n-1)
+    return fib(n-1) + fib(n-2)
     
  f_range = fib_range(3,9)
  print(next(f_range))
